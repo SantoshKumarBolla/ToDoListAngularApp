@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ToDo List Page</title>
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        <script src="node_modules/classlist.js/classlist.min.js"></script>
+        <script src="node_modules/core-js/client/shim.min.js"></script>
+        <script src="node_modules/zone.js/dist/zone.min.js"></script>
+        <script src="node_modules/reflect-metadata/Reflect.js"></script>
+        <script src="node_modules/systemjs/dist/system.src.js"></script>
+        <script>
+            var paths = {
+                "rxjs/*": "node_modules/rxjs/bundles/Rx.min.js",
+                "@angular/*": "node_modules/@angular/*"
+            };
+
+            var packages = {"app": {}}; //picking the files form app folder
+
+            var angularModules = ["common", "compiler", "core", "forms", "platform-browser", "platform-browser-dynamic"];
+
+            angularModules.forEach (function  (pkg){
+                packages["@angular/" + pkg] = { main: "bundles/" + pkg + ".umd.min.js", defaultExtension: 'js'};
+            });//forEach
+
+            System.config({ paths: paths, packages: packages });
+            System.import("app/main").catch(function (err) { console.log("Error -> " + err);});
+
+        </script>
+    </head>
+    <body class="m-1">
+        <app-todo></app-todo>
+        <!-- <h3 class="bg-info">MN's ToDo List</h3> -->
+    </body>
+</html>
