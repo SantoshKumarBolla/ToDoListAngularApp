@@ -1,0 +1,62 @@
+<div class="row m-1">
+    <div class="bg-info text-white col-xs-6 col-sm-6 col-md-6 col-lg-6">
+        <h3>{{getName()}}'s ToDo List, Pending: <span [style.font-size]="fontSize">{{getPendingToDo()}}</span></h3>
+    </div>
+    <div class="text-white col-xs-6 col-sm-6 col-md-6 col-lg-6" [ngClass]="getToDoListCountClass()" >
+        <h3>{{getName()}}'s ToDo List, Pending: <span [ngStyle]="setFontSizeColor()">{{getPendingToDo()}}</span></h3>
+    </div>
+</div>
+
+<div class="form-inline">
+    <label>New ToDo:</label>
+    <input class="form-control" #toDoText /> &nbsp;
+    <button class="btn btn-primary" (click)="addItem(toDoText.value)">Add</button>
+</div>
+
+<table class="table table-sm table-bordered table-striped">
+    <thead>
+        <tr class="bg-inverse text-white">
+            <th>SrNo</th>
+            <th>Description</th>
+            <th>Done</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of getToDoList(); let i = index; let odd = odd; let first = first; let last = last" [class.bg-info]="odd" [class.bg-primary]="!odd" [class.bg-danger]="last">
+            <td>{{i+1}}</td>
+            <td>{{item.action}}</td>
+            <!-- <td>{{item.done}}</td> -->
+            <td [ngSwitch]="item.done">
+                <span *ngSwitchCase="true">Yes</span>
+                <span *ngSwitchDefault>No</span>
+            </td>
+            <td>
+                <input type="checkbox" [(ngModel)]="item.done"/> &nbsp;
+                <button class="btn btn-danger ml-2" (click)= "deleteItem(item.action)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div>
+    <h5>Last Reviewed: {{lastUpdateOn() | date: "dd-MMM-yyyy/EEE: hh:mm:ss Z"}}</h5>
+    <table class="table table-bordered">
+        <thead>
+            <tr><th>Date</th><th>Number</th><th>Currency</th><th>Percentage</th><th>Time</th><th>UPPERCASE</th><th>lowercase</th><th>Slice</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{lastUpdateOn() | date: "short"}}</td>
+                <td>{{ 10 | number: "2.2-2"}}</td>
+                <td>{{ 88 | currency: "INR": true: "2.2-2"}}</td>
+                <td>{{ 0.1 | percent }}</td>
+                <td>{{lastUpdateOn() | date: "shortTime"}}</td>
+                <td>{{"mandrake" | uppercase}}</td>
+                <td>{{"MANDRAKE" | lowercase}}</td>
+                <td>{{"mandrake" | slice: 0: 3 }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
