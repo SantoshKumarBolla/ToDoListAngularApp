@@ -1,0 +1,32 @@
+{
+    "version": "1.0.0",
+    "name": "todolistangularapp",
+    "private": true,
+    "dependencies": {
+        "@angular/common": "2.4.10",
+        "@angular/compiler": "2.4.10",
+        "@angular/core": "2.4.10",
+        "@angular/forms": "2.4.10",
+        "@angular/platform-browser": "2.4.10",
+        "@angular/platform-browser-dynamic": "2.4.10",
+        "reflect-metadata": "0.1.10",
+        "rxjs": "5.2.0",
+        "zone.js": "0.7.7",
+        "core-js": "2.4.1",
+        "classlist.js": "1.1.20150312",
+        "systemjs": "0.19.40"
+    },
+    "devDependencies": {
+        "lite-server": "2.3.0",
+        "typescript": "2.4.2",
+        "typings": "2.1.1",
+        "concurrently": "3.4.0"
+    },
+    "scripts": {
+        "start": "concurrently \" npm run tscwatch\" \"npm run lite\"",
+        "tsc": "tsc",
+        "tscwatch": "tsc -w",
+        "lite": "lite-server",
+        "typings": "typings"
+    }
+}
